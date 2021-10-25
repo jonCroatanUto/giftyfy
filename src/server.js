@@ -6,9 +6,10 @@ const { json } = require("body-parser");
 const cors = require("cors");
 // const { config } = require("./config");
 // routes
-// const { trackRouter, userRouter, playlistRouter } = require("./routes");
+const { gifRouter, userRouter, gifListRouter } = require("./routes");
 
-// app creation
+// app creationgifRouter
+
 const app = express();
 // console.log(config.url.client);
 // app usage of imports
@@ -18,9 +19,9 @@ app.use(json());
 app.use(cors());
 
 // app used routes
-// app.use("/tracks", trackRouter);
-// app.use("/users", userRouter);
-// app.use("/playlists", playlistRouter);
+app.use("/gifs", gifRouter);
+app.use("/users", userRouter);
+app.use("/gifList", gifListRouter);
 
 // test request to see server works properly
 app.get("/", (req, res) => {
