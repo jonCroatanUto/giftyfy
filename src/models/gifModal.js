@@ -31,11 +31,8 @@ const GifSchema = new Schema(
       type: String,
       default: "",
     },
-    urlCover: {
-      type: String,
-      default: "",
-    },
-    urlTrack: {
+
+    urlGif: {
       type: String,
       required: [true, "Please input a song URL"],
     },

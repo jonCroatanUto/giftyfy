@@ -1,14 +1,20 @@
 const { Gifs } = require("../models");
 
 async function upload(req, res) {
-  const { gifData } = req.body;
+  const { owner, author, album, title, urlGif } = req.body;
 
   try {
     // const encrypedPassword = await encryptString(password);
 
-    const { _id } = await Gifs.create(gifData);
+    const { _id } = await Gifs.create({
+      owner: owner,
+      author: author,
+      album: album,
+      title: title,
+      urlGif: urlGif,
+    });
     return res.status(200).send({
-      message: `New track ${gifData.title} is been created ${gifData.owner} `,
+      message: `New track ${title} is been created ${owner} `,
       data: _id,
     });
   } catch (error) {
@@ -34,12 +40,14 @@ async function getAll(req, res) {
 }
 
 async function getByTitle(req, res) {
-  const { title } = req.body;
+  const { title } = req.params;
+
   try {
     // const encrypedPassword = await encryptString(password);
 
     const gif = await Gifs.find({ title: title });
     return res.status(200).send({
+      message: "hola",
       gif: gif,
     });
   } catch (error) {
@@ -49,9 +57,9 @@ async function getByTitle(req, res) {
   }
 }
 
-async function uploadById(req, res) {
-  const { gifData } = req.body;
-  const { id } = req.param;
+async function updateById(req, res) {
+  const gifData = req.body;
+  const { id } = req.params;
 
   try {
     // const encrypedPassword = await encryptString(password);
@@ -59,6 +67,7 @@ async function uploadById(req, res) {
     const dbResponse = await Gifs.findByIdAndUpdate(id, gifData, {
       new: true,
     });
+
     return res.status(200).send({
       message: `gift updated fine `,
       data: dbResponse,
@@ -70,7 +79,7 @@ async function uploadById(req, res) {
   }
 }
 async function deleteGif(req, res) {
-  const { id } = req.param;
+  const { id } = req.params;
 
   try {
     // const encrypedPassword = await encryptString(password);
@@ -91,6 +100,6 @@ module.exports = {
   upload: upload,
   getAll: getAll,
   getByTitle: getByTitle,
-  uploadById: uploadById,
+  updateById: updateById,
   deleteGif: deleteGif,
 };
