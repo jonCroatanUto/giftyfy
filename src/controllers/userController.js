@@ -8,7 +8,7 @@ async function register(req, res) {
 
     // const encrypedPassword = await encryptString(password);
     if (!user) {
-      const { _id } = await Users.create({
+      const user = await Users.create({
         username: username,
         email: email,
         password: await Users.encryptPassword(password),
@@ -16,7 +16,7 @@ async function register(req, res) {
       });
       return res.status(200).send({
         message: `Welcome ${username} to our gif world `,
-        data: _id,
+        data: user,
       });
     } else {
       return res.status(200).send({
@@ -40,6 +40,7 @@ async function login(req, res) {
     if (user) {
       if (isPassword) {
         return res.status(200).send({
+          data: user,
           message: `Welcome back ${user.username} `,
         });
       } else {

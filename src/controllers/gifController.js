@@ -1,7 +1,7 @@
 const { Gifs } = require("../models");
 
 async function upload(req, res) {
-  const { owner, author, album, title, urlGif } = req.body;
+  const { owner, author, genre, title, urlGif } = req.body;
 
   try {
     // const encrypedPassword = await encryptString(password);
@@ -9,7 +9,7 @@ async function upload(req, res) {
     const { _id } = await Gifs.create({
       owner: owner,
       author: author,
-      album: album,
+      genre: genre,
       title: title,
       urlGif: urlGif,
     });
