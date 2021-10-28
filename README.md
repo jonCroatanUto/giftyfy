@@ -9,7 +9,7 @@ manege you own library of gifts
 This server is specialy designed for the client
 
 - to make the client work yo need to position you terminal inside the folder `GIFTIFYFRONT` and run the comand `npm start`
-- It 's located in the repo: [http://localhost:4000](http://localhost:4000)
+- It 's located in the repo: [https://github.com/jonCroatanUto/gififyFront](https://github.com/jonCroatanUto/gififyFront)
 
 ## Available Scripts
 
