@@ -36,8 +36,14 @@ async function login(req, res) {
       email: email,
     });
 
-    const isPassword = await Users.comparePassword(password, user.password);
-    if (user) {
+    if (user === null) {
+      return res.status(200).send({
+        message: `Hello ${username}, you are not founded. Please register  `,
+      });
+    } else {
+      // console.log(user);
+      const isPassword = await Users.comparePassword(password, user.password);
+
       if (isPassword) {
         return res.status(200).send({
           data: user,
@@ -48,10 +54,6 @@ async function login(req, res) {
           message: `incorrect password`,
         });
       }
-    } else {
-      return res.status(400).send({
-        message: `Hello ${username}, you are not logged. Please register  `,
-      });
     }
   } catch (error) {
     return res.status(500).send({
