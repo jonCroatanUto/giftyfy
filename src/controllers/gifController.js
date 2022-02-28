@@ -58,13 +58,13 @@ async function getByTitle(req, res) {
 }
 
 async function updateById(req, res) {
-  const { title } = req.body;
+  const gifData = req.body;
   const { id } = req.params;
 
   try {
     // const encrypedPassword = await encryptString(password);
 
-    const dbResponse = await Gifs.findByIdAndUpdate(id, title, {
+    const dbResponse = await Gifs.findByIdAndUpdate(id, gifData, {
       new: true,
     });
 
